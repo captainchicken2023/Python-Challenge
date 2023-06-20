@@ -58,7 +58,7 @@ with open(budget_data, 'r') as csvfile:
             
 # Create summary results, print to file, and export
 
-Pybank_Results = (
+Analysis = (
    f"\nFinancial Analysis\n"
    f"-----------------------------\n"
    f"Total Months: {Total_Months}\n"
@@ -68,16 +68,9 @@ Pybank_Results = (
    f"Greatest Decrease in Profits: {Greatest_Profit_Decrease[0]} (${Greatest_Profit_Decrease[1]}) \n"
 )
 
-print(Pybank_Results)
+print(Analysis)
 
 Pybank_Results = "Analysis/Pybank_Results.txt"
 
 with open(Pybank_Results, "w") as file:
-        file.write("\nFinancial Analysis\n")
-        file.write("-----------------------------\n")
-        file.write("Total Months: {Total_Months}\n")
-        file.write("Total: ${Total_Profit_Losses}\n")
-        file.write("Average Change: ${Average_Change}\n")
-        file.write("Greatest Increase in Profits: {Greatest_Profit_Increase[0]} (${Greatest_Profit_Increase[1]}) \n"   )
-        file.write("Greatest Decrease in Profits: {Greatest_Profit_Decrease[0]} (${Greatest_Profit_Decrease[1]}) \n")
-
+        file.write(Analysis)
