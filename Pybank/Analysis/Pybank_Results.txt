@@ -1,0 +1,8 @@
+
+Financial Analysis
+-----------------------------
+Total Months: {Total_Months}
+Total: ${Total_Profit_Losses}
+Average Change: ${Average_Change}
+Greatest Increase in Profits: {Greatest_Profit_Increase[0]} (${Greatest_Profit_Increase[1]}) 
+Greatest Decrease in Profits: {Greatest_Profit_Decrease[0]} (${Greatest_Profit_Decrease[1]}) 

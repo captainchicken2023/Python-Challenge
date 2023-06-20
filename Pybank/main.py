@@ -14,7 +14,8 @@ with open(budget_data, 'r') as csvfile:
     Total_Months = 0 
     Month_Changed = []
     Previous_Change = 0
-    Profit_Loss_Changes = 0
+    Profit_Loss_Changes = 0 
+    Total_Profit_Losses = 0
     Profit_Loss_Changes_list = []
     Greatest_Profit_Increase = ["", 0]
     Greatest_Profit_Decrease = ["", 999999999999999999999999999999]
@@ -31,22 +32,20 @@ with open(budget_data, 'r') as csvfile:
         
         
         # Calculate the net total amount of "Profit/Losses" over the entire period
-        Profit_Loss_Changes = Profit_Loss_Changes +int(row[1])
+        Total_Profit_Losses = Total_Profit_Losses + (int(row[1]))
         
         
-        # Calculate the changes in "Profit/Losses" over the entire period, and then the average of those changes
+        # Calculate the changes in "Profit/Losses" over the entire period, then provide the average for the changes
         
         Profit_Loss_Changes = int(row[1]) - Previous_Change
         Previous_Change = int(row[1])
-        Profit_Loss_Changes_list = Profit_Loss_Changes_list +[Previous_Change]
+        Profit_Loss_Changes_list = Profit_Loss_Changes_list + [Previous_Change]
         Month_Changed = Month_Changed + [row[0]]
-            
-        Average_Change = sum(Profit_Loss_Changes_list) / len(Profit_Loss_Changes_list)
-        
+        Average_Change = round(sum(Profit_Loss_Changes_list) / len(Profit_Loss_Changes_list), 2)  
         
         # Determine the greatest increase in profits (date and amount) over the entire period
         
-        if (Profit_Loss_Changes > Greatest_Profit_Increase[1]):
+        if (Profit_Loss_Changes > Greatest_Profit_Increase[1]): 
             Greatest_Profit_Increase[0] = row[0]
             Greatest_Profit_Increase[1] = Profit_Loss_Changes
         
@@ -63,7 +62,7 @@ Pybank_Results = (
    f"\nFinancial Analysis\n"
    f"-----------------------------\n"
    f"Total Months: {Total_Months}\n"
-   f"Total: ${Profit_Loss_Changes}\n"
+   f"Total: ${Total_Profit_Losses}\n"
    f"Average Change: ${Average_Change}\n"
    f"Greatest Increase in Profits: {Greatest_Profit_Increase[0]} (${Greatest_Profit_Increase[1]}) \n"   
    f"Greatest Decrease in Profits: {Greatest_Profit_Decrease[0]} (${Greatest_Profit_Decrease[1]}) \n"
@@ -71,7 +70,14 @@ Pybank_Results = (
 
 print(Pybank_Results)
 
-Pybank_Results = "Pybank_Results.txt"
+Pybank_Results = "Analysis/Pybank_Results.txt"
 
 with open(Pybank_Results, "w") as file:
-        file.write('Pybank_Results')
+        file.write("\nFinancial Analysis\n")
+        file.write("-----------------------------\n")
+        file.write("Total Months: {Total_Months}\n")
+        file.write("Total: ${Total_Profit_Losses}\n")
+        file.write("Average Change: ${Average_Change}\n")
+        file.write("Greatest Increase in Profits: {Greatest_Profit_Increase[0]} (${Greatest_Profit_Increase[1]}) \n"   )
+        file.write("Greatest Decrease in Profits: {Greatest_Profit_Decrease[0]} (${Greatest_Profit_Decrease[1]}) \n")
+
