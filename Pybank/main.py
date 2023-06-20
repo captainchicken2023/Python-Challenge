@@ -69,8 +69,9 @@ Pybank_Results = (
    f"Greatest Decrease in Profits: {Greatest_Profit_Decrease[0]} (${Greatest_Profit_Decrease[1]}) \n"
 )
 
+print(Pybank_Results)
 
 Pybank_Results = "Pybank_Results.txt"
-print(Pybank_Results)
+
 with open(Pybank_Results, "w") as file:
         file.write('Pybank_Results')
