@@ -1,51 +1,70 @@
-import os
 import csv
 
 # Path to collect data from the Resources folder
-election_data = os.path.join('..', 'Resources', 'election_data.csv')
+election_data = ("C:\\Users\\Junk\\Python-Challenge\\Pypoll\\Resources\\election_data.csv")
 
 # Read in the CSV file
-with open(election_data.csv, 'r') as csvfile:
+with open(election_data, 'r') as csvfile:
 
-    # Split the data on commas
-    csvreader = csv.reader(csvfile, delimiter=',')
+        # Define variables
+        
+        Total_Votes_Cast = 0
+        Candidates = []
+        Candidate_Results = {}
+        Vote_Percentage = 0
+        Winner = ""
+        Winning_Count = 0
+        
+         
+        
+        # Split the data on commas
+        csvreader = csv.reader(csvfile, delimiter=',')
+        header = next(csvreader)
+        
+        # Loop through the data
+        for row in csvreader:
+            
+            # Calculate the total number of votes cast
+            Total_Votes_Cast = Total_Votes_Cast + 1
+            
+            # Display a complete list of candidates who received votes
+            Candidates = row[2]
+            
 
-    header = next(csvreader)
-    
-    
-# Define variables
-
-# The dataset is composed of three columns: "Voter ID", "County", and "Candidate". 
-
-# Calculate the total number of votes cast
-
-# Display a complete list of candidates who received votes
-
-# Calculate the percentage of votes each candidate won
-
-# Calculate the total number of votes each candidate won
-print("")
-
-
-# Calculate the winner of the election based on popular vote
-
-print("Winner")
+            # The dataset is composed of three columns: "Voter ID", "County", and "Candidate". 
+            
+            
+            # Calculate the percentage of votes each candidate won
+            
+            # Create a list of candidates
+            Candidates = [
+            "Tom Cruise",
+            "Angelina Jolie",
+            "Kristen Stewart",
+            "Denzel Washington"]
+            
+            # Calculate the total number of votes each candidate won
+            
+            
+            # Calculate the winner of the election based on popular vote
+        
+        
 
 # Create summary results, print to file, and export
 
-Pypoll_Results = (
+Results = (
    f"\nElection Results\n"
    f"-----------------------------\n"
-   f"Total Votes: {Total_Votes}\n"
+   f"Total_Votes_Cast: {Total_Votes_Cast}\n"
    f"-----------------------------\n"
-   f"Total: ${Total_Profit_Losses}\n"
-   f"Average Change: ${Average_Change}\n"
-   f"Greatest Increase in Profits: {greatest increase[0]} (${greatest increase[1]}) \n"   
+   f"{Candidates[2]} ({Vote_Percentage}%) {Candidate_Results}\n"   
    f"Winner: \n"
 )
 
 
-Pybank_Results = "Pybank_Results.txt"
-print(Pybank_Results)
-with open(Pybank_Results, "w") as file:
-        file.write('Pybank_Results')
+print(Results)
+
+Pypoll_Results = "Analysis/Pypoll_Results.txt"
+
+with open(Pypoll_Results, "w") as file:
+        file.write(Results)
