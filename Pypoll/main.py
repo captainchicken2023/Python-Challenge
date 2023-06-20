@@ -13,7 +13,7 @@ with open(election_data.csv, 'r') as csvfile:
     header = next(csvreader)
     
     
-
+# Define variables
 
 # The dataset is composed of three columns: "Voter ID", "County", and "Candidate". 
 
@@ -30,3 +30,22 @@ print("")
 # Calculate the winner of the election based on popular vote
 
 print("Winner")
+
+# Create summary results, print to file, and export
+
+Pypoll_Results = (
+   f"\nElection Results\n"
+   f"-----------------------------\n"
+   f"Total Votes: {Total_Votes}\n"
+   f"-----------------------------\n"
+   f"Total: ${Total_Profit_Losses}\n"
+   f"Average Change: ${Average_Change}\n"
+   f"Greatest Increase in Profits: {greatest increase[0]} (${greatest increase[1]}) \n"   
+   f"Winner: \n"
+)
+
+
+Pybank_Results = "Pybank_Results.txt"
+print(Pybank_Results)
+with open(Pybank_Results, "w") as file:
+        file.write('Pybank_Results')
