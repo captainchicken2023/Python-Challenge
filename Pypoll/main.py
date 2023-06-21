@@ -13,17 +13,12 @@ with open(election_data, 'r') as csvfile:
         Candidates_Name = []
         Candidate_Results = 0
         Vote_Percentage = 0
-        Winner = ""
-        Winning_Count = 0
-        
-         
+        Winner = []
+        Winning_Count = 0  
         
         # Split the data on commas
         csvreader = csv.reader(csvfile, delimiter=',')
         header = next(csvreader)
-        #for dictionary in csvreader:
-         #   Candidates_List.append(dictionary)
-        
         
         #Candidates = {rows[2] for rows in csvreader}
         # Loop through the data
@@ -44,13 +39,11 @@ with open(election_data, 'r') as csvfile:
             # Calculate the percentage of votes each candidate won
             for Candidates[row[2]] in Candidates_Name:
                 Vote_Percentage = (Candidates[row[2]]/Total_Votes_Cast)*100
-            
-           if 
-               Candidates.append(row[2])
+               
             # Calculate the winner of the election based on popular vote
-            #if Candidate_Results > Winning_Count:
-             #  Winning_Count = Candidate_Results
-              # Winner = Candidates_Name
+            if (Candidate_Results > Winning_Count):
+               Winning_Count = Candidate_Results
+               Winner = Candidates_Name
         
 
 # Create summary results, print to file, and export
