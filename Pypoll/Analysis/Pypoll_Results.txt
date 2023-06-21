@@ -1,7 +1,0 @@
-
-Election Results
------------------------------
-Total_Votes_Cast: 369711
------------------------------
-Kristen Stewart (0%) {}
-Winner: 
