@@ -11,7 +11,7 @@ with open(election_data, 'r') as csvfile:
         Total_Votes_Cast = 0
         Candidates = {}
         Candidates_Name = []
-        Candidate_Results = []
+        Candidate_Results = 0
         Vote_Percentage = 0
         Winner = ""
         Winning_Count = 0
@@ -34,34 +34,23 @@ with open(election_data, 'r') as csvfile:
             
             # Display a complete list of candidates who received votes
             # If candidate doesn't exist, add to list and count votes received
-            
-            #Candidates = dict({row[2]})
-            #Candidates.append(row[2])
             if row[2] not in Candidates:
+                
                 Candidates[row[2]]= 1 
+                
             else:
-                Candidates[row[2]]= Candidates[row[2]] + 1 
-                
-            #if Candidates_Name not in Candidates_List:
-                #Candidates.append(Candidates_Name)
-                
-            #Candidate_Results[Candidates_Name] = Candidate_Results[Candidates_Name] + 1
-            
-            # The dataset is composed of three columns: "Voter ID", "County", and "Candidate". 
-            
-            
-            # Calculate the percentage of votes each candidate won
-            
-            # Create a list of candidates
+                Candidates[row[2]] = Candidates[row[2]] + 1            
 
+            # Calculate the percentage of votes each candidate won
+            for Candidates[row[2]] in Candidates_Name:
+                Vote_Percentage = (Candidates[row[2]]/Total_Votes_Cast)*100
             
-            # Calculate the total number of votes each candidate won
-            
-            
+           if 
+               Candidates.append(row[2])
             # Calculate the winner of the election based on popular vote
-            #if final_list[candidate] > winner_votes:
-               # Winning_Count = final_list[candidate]
-              #  Winner = Candidates_Name
+            #if Candidate_Results > Winning_Count:
+             #  Winning_Count = Candidate_Results
+              # Winner = Candidates_Name
         
 
 # Create summary results, print to file, and export
@@ -71,12 +60,12 @@ Results = (
    f"-----------------------------\n"
    f"Total_Votes_Cast: {Total_Votes_Cast}\n"
    f"-----------------------------\n"
-   f"\n{Candidates_Name} ({Vote_Percentage}%) {Candidate_Results}\n"   
+   f"\n{Candidates}\n"   
    f"Winner: \n"
 )
 
-print(Candidates)
 print(Results)
+
 
 Pypoll_Results = "Analysis/Pypoll_Results.txt"
 
