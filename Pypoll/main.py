@@ -7,10 +7,9 @@ election_data = ("C:\\Users\\Junk\\Python-Challenge\\Pypoll\\Resources\\election
 with open(election_data, 'r') as csvfile:
 
         # Define variables
-        
         Total_Votes_Cast = 0
         Candidates = {}
-        Candidates_Name = []
+        Candidate = []
         Candidate_Results = 0
         Vote_Percentage = 0
         Winner = []
@@ -20,8 +19,6 @@ with open(election_data, 'r') as csvfile:
         csvreader = csv.reader(csvfile, delimiter=',')
         header = next(csvreader)
     
-        
-        #Candidates = {rows[2] for rows in csvreader}
         # Loop through the data
         for row in csvreader:
             
@@ -30,17 +27,16 @@ with open(election_data, 'r') as csvfile:
             
             # Display a complete list of candidates who received votes
             # If candidate doesn't exist, add to list and count votes received
+            # Save results to file
             if row[2] not in Candidates:
                 
                 Candidates[row[2]]= 1 
-                
             else:
                 Candidates[row[2]] = Candidates[row[2]] + 1   
                 
 Pypoll_Results = "Analysis/Pypoll_Results.txt"       
 
 with open(Pypoll_Results, "w") as file:
-               
         
     Results = (
        f"\nElection Results\n"
@@ -48,12 +44,10 @@ with open(Pypoll_Results, "w") as file:
        f"Total_Votes_Cast: {Total_Votes_Cast}\n"
        f"-----------------------------\n"
     )
-    
     print(Results)
     file.write(Results)   
 
-
-    # Calculate the percentage of votes each candidate won
+    # Calculate and print the percentage of votes each candidate won
     for Candidate in Candidates:
         Votes = Candidates[Candidate]
         Vote_Percentage = (Votes/Total_Votes_Cast)*100
@@ -66,7 +60,7 @@ with open(Pypoll_Results, "w") as file:
            Winning_Count = Votes
            Winner = Candidate
 
-# Create summary results, print to file, and export
+# Complete summary results, print to file, and export
     print(f"Winner: {Winner}")
     file.write(f"Winner: {Winner}")
 

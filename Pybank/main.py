@@ -1,14 +1,12 @@
 import csv
 
 # Path to collect data from the Resources folder
-
 budget_data = ("C:\\Users\\Junk\\Python-Challenge\\Pybank\\Resources\\budget_data.csv")
 
 # Read in the CSV file
 with open(budget_data, 'r') as csvfile:
 
     # Define variables
-    
     Total_Months = 1
     Month_Changed = []
     Previous_Change = 0
@@ -30,37 +28,29 @@ with open(budget_data, 'r') as csvfile:
         # Determine the total number of months in the data set
         Total_Months = Total_Months + 1
         
-        
         # Calculate the net total amount of "Profit/Losses" over the entire period
         Total_Profit_Losses = Total_Profit_Losses + (int(row[1]))
         
-        
-        # Calculate the changes in "Profit/Losses" over the entire period, then provide the average for the changes
-        
+        # Calculate the changes in "Profit/Losses" over the entire period
         Profit_Loss_Changes = int(row[1]) - Previous_Change
         Previous_Change = int(row[1])
         Profit_Loss_Changes_list = Profit_Loss_Changes_list + [Profit_Loss_Changes]
         Month_Changed = Month_Changed + [row[0]]
     
-        
         # Determine the greatest increase in profits (date and amount) over the entire period
-        
         if (Profit_Loss_Changes > Greatest_Profit_Increase[1]): 
             Greatest_Profit_Increase[0] = row[0]
             Greatest_Profit_Increase[1] = Profit_Loss_Changes
         
-        
         # Determine the greatest decrease in profits (date and amount) over the entire period
-        
         if (Profit_Loss_Changes < Greatest_Profit_Decrease[1]):
             Greatest_Profit_Decrease[0] = row[0]
             Greatest_Profit_Decrease[1] = Profit_Loss_Changes
 
-# Calculate average
+# Calculate average change
 Average_Change = round(sum(Profit_Loss_Changes_list) / len(Profit_Loss_Changes_list), 2)
 
 # Create summary results, print to file, and export
-
 Analysis = (
    f"\nFinancial Analysis\n"
    f"-----------------------------\n"
