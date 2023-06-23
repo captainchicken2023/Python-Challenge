@@ -9,11 +9,10 @@ with open(budget_data, 'r') as csvfile:
 
     # Define variables
     
-    Total_Months = 0 
+    Total_Months = 1
     Month_Changed = []
     Previous_Change = 0
     Profit_Loss_Changes = 0 
-    Total_Profit_Losses = 0
     Profit_Loss_Changes_list = []
     Greatest_Profit_Increase = ["", 0]
     Greatest_Profit_Decrease = ["", 999999999999999999999999999999]
@@ -21,8 +20,11 @@ with open(budget_data, 'r') as csvfile:
     # Split the data on commas
     csvreader = csv.reader(csvfile, delimiter=',')
     header = next(csvreader)
+    firstrow = next(csvreader)
 
     # Loop through the data
+    Total_Profit_Losses = int(firstrow[1])
+    Previous_Change = int(firstrow[1])
     for row in csvreader:
     
         # Determine the total number of months in the data set
@@ -37,9 +39,9 @@ with open(budget_data, 'r') as csvfile:
         
         Profit_Loss_Changes = int(row[1]) - Previous_Change
         Previous_Change = int(row[1])
-        Profit_Loss_Changes_list = Profit_Loss_Changes_list + [Previous_Change]
+        Profit_Loss_Changes_list = Profit_Loss_Changes_list + [Profit_Loss_Changes]
         Month_Changed = Month_Changed + [row[0]]
-        Average_Change = round(sum(Profit_Loss_Changes_list) / len(Profit_Loss_Changes_list), 2)  
+    
         
         # Determine the greatest increase in profits (date and amount) over the entire period
         
@@ -53,7 +55,10 @@ with open(budget_data, 'r') as csvfile:
         if (Profit_Loss_Changes < Greatest_Profit_Decrease[1]):
             Greatest_Profit_Decrease[0] = row[0]
             Greatest_Profit_Decrease[1] = Profit_Loss_Changes
-            
+
+# Calculate average
+Average_Change = round(sum(Profit_Loss_Changes_list) / len(Profit_Loss_Changes_list), 2)
+
 # Create summary results, print to file, and export
 
 Analysis = (

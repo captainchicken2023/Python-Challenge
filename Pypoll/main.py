@@ -19,6 +19,7 @@ with open(election_data, 'r') as csvfile:
         # Split the data on commas
         csvreader = csv.reader(csvfile, delimiter=',')
         header = next(csvreader)
+    
         
         #Candidates = {rows[2] for rows in csvreader}
         # Loop through the data
@@ -34,33 +35,41 @@ with open(election_data, 'r') as csvfile:
                 Candidates[row[2]]= 1 
                 
             else:
-                Candidates[row[2]] = Candidates[row[2]] + 1            
-
-            # Calculate the percentage of votes each candidate won
-            for Candidates[row[2]] in Candidates_Name:
-                Vote_Percentage = (Candidates[row[2]]/Total_Votes_Cast)*100
-               
-            # Calculate the winner of the election based on popular vote
-            if (Candidate_Results > Winning_Count):
-               Winning_Count = Candidate_Results
-               Winner = Candidates_Name
-        
-
-# Create summary results, print to file, and export
-
-Results = (
-   f"\nElection Results\n"
-   f"-----------------------------\n"
-   f"Total_Votes_Cast: {Total_Votes_Cast}\n"
-   f"-----------------------------\n"
-   f"\n{Candidates}\n"   
-   f"Winner: \n"
-)
-
-print(Results)
-
-
-Pypoll_Results = "Analysis/Pypoll_Results.txt"
+                Candidates[row[2]] = Candidates[row[2]] + 1   
+                
+Pypoll_Results = "Analysis/Pypoll_Results.txt"       
 
 with open(Pypoll_Results, "w") as file:
-        file.write(Results)
+               
+        
+    Results = (
+       f"\nElection Results\n"
+       f"-----------------------------\n"
+       f"Total_Votes_Cast: {Total_Votes_Cast}\n"
+       f"-----------------------------\n"
+    )
+    
+    print(Results)
+    file.write(Results)   
+
+
+    # Calculate the percentage of votes each candidate won
+    for Candidate in Candidates:
+        Votes = Candidates[Candidate]
+        Vote_Percentage = (Votes/Total_Votes_Cast)*100
+        print(f"{Candidate}: {Vote_Percentage:.3f}% ({Votes})\n")
+
+        file.write(f"{Candidate}: {Vote_Percentage:.3f}% ({Votes})\n")   
+        
+        # Calculate the winner of the election based on popular vote
+        if (Votes > Winning_Count):
+           Winning_Count = Votes
+           Winner = Candidate
+
+# Create summary results, print to file, and export
+    print(f"Winner: {Winner}")
+    file.write(f"Winner: {Winner}")
+
+
+
+
