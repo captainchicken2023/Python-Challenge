@@ -1,7 +1,8 @@
+import os
 import csv
 
 # Path to collect data from the Resources folder
-election_data = ("C:\\Users\\Junk\\Python-Challenge\\Pypoll\\Resources\\election_data.csv")
+election_data = os.path.join("..", "Pypoll", "Resources", "election_data.csv")
 
 # Read in the CSV file
 with open(election_data, 'r') as csvfile:
@@ -41,7 +42,7 @@ with open(Pypoll_Results, "w") as file:
     Results = (
        f"\nElection Results\n"
        f"-----------------------------\n"
-       f"Total_Votes_Cast: {Total_Votes_Cast}\n"
+       f"Total Votes: {Total_Votes_Cast}\n"
        f"-----------------------------\n"
     )
     print(Results)
@@ -61,7 +62,11 @@ with open(Pypoll_Results, "w") as file:
            Winner = Candidate
 
 # Complete summary results, print to file, and export
-    print(f"Winner: {Winner}")
+    print(
+        f"-----------------------------\n"
+        f"Winner: {Winner}\n"
+        f"-----------------------------\n"
+    )
     file.write(f"Winner: {Winner}")
 
 
